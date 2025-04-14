@@ -1,0 +1,28 @@
+# CMake build director
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake 
+Makefile
+
+# Generated files
+*.out
+*.o 
+*.a 
+*.so
+*.log
+*.swp
+*.swo
+
+# Compile commands
+compile_commands.json
+
+# Test logs
+Testing/
+CTestTestfile.cmake
+DartConfiguration.tcl
+
+# System & IDE junk
+*.DS_Store
+*.vscode/
+.idea
