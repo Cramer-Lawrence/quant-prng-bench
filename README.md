@@ -1,3 +1,4 @@
+![Quant PRNG Bench Banner](assets/readmeBanner.png)
 # Quant PRNG Bench
 
 Modular C++ project featuring:
@@ -7,8 +8,6 @@ Modular C++ project featuring:
 - 🧬 `test/`: Unit tests powered by GoogleTest + CTest
 - 📊 `benchmarks/`: CLI tools to compare PRNG performance
 - 🧠 Designed for reproducibility, modularity, and quant-oriented engineering
-
-![CMake](https://github.com/Cramer-Lawrence/quant-prng-bench/actions/workflows/cmake.yml/badge.svg)
 
 ```bash
 mkdir build && cd build
