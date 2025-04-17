@@ -1,0 +1,20 @@
+	
+	SEEDER:
+In order to create a prng research project, the first step to any good prng algorithm is a seeder. A seed in an inital starting value the algorithm uses to begin the generation of the numbers.
+
+	TYPES:
+1. Explicit Seeding: Manually entering the seed number. This is a great way to test the PRNG algorithm as the seed will always be consistent. Therefore the PRNG should always return the same set of numbers.
+
+2. Implicit Seeding: This methodology utilizes a 3rd party input, like the system clock, to generate a new seed. Since the system clock is always changing, the seed will always be changing. A downside would be if you don't have the input value granular enough and attempt to run the PRNG twice within the same threshold. Or, if it is known that the system clock is used that type of input can be explicitly passed into the PRNG and the numbers could be generated that way. I would suspect a better way to handle this would be to hash the implicit input? 
+
+3. Seeding with Entropy: This is essentially feeding a random number in as the seed. This number could be gained through hardware means or really, anywhere a random number could be produced. Pixels on the screen, current memory location of a variable, current process id, or any other highly unpredictable and random(esk) method.
+
+4. Seeding with Hashing: This method involves combining multiple randomization methods and then running the result through a hashing algorithm (SHA-256 or SHA-512). 
+
+	SEEDER PLAN:
+I am going to create 3 different types of seeder classes. The explicit seeder will be more manual than anything else, so initially I think I can skip making a class for this. I'm going to make an Implicit seeder class that focuses on using the system clock. An entropy based seeder class that uses the current process id. Finally, I'm going to create a hashing seeder that uses both the system clock and the entropy based seeder then hashes the result with one of the hashing alogithms.
+
+	TESTING GOALS:
+1. I'm going to benchmark the seeders to track time to execute, memory utilization, and track the randomness distribution when run n times.
+2. I want to determine if any of these methods is vastly superior or inferior to the others.
+3. I'm going to combine these with the PRNG classes I develop next and see if any inherently pair well.
