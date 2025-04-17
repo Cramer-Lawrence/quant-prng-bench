@@ -26,15 +26,15 @@ Combines multiple weak entropy sources (e.g., time + PID) and hashes them using 
 Advantage: Strengthens weak inputs and reduces predictability.
 Optional: Use libraries like OpenSSL or libsodium for secure, high-performance hash implementations.
 
-**🧱 Seeder Implementation Plan
-I will implement three distinct Seeder classes:**
+**🧱 Seeder Implementation Plan**
+**I will implement three distinct Seeder classes:**
 ImplicitSeeder	Uses the current high-resolution system time as a seed source.
 EntropySeeder	Combines process-level entropy (e.g., PID, memory data).
 HashedSeeder	Aggregates time and entropy sources, then applies a cryptographic hash.
 Explicit seeding will be handled manually, as it serves mainly for testing and reproducibility.
 
-**📊 Benchmarking & Evaluation Goals
-Each Seeder will be evaluated on:**
+**📊 Benchmarking & Evaluation Goals**
+**Each Seeder will be evaluated on:**
 Execution Time – How quickly the seed is generated.
 Memory Utilization – Overhead introduced during seeding.
 Randomness Distribution – Measured by statistical uniformity across repeated runs.
