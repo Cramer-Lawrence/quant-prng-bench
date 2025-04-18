@@ -3,5 +3,6 @@ add_library(libseed
 )
 
 target_include_directories(libseed PUBLIC
-	${CMAKE_CURRENT_SOURCE_DIR}/include 
+	${CMAKE_CURRENT_SOURCE_DIR}/include
+	${PROJECT_SOURCE_DIR}/libbench/include
 )

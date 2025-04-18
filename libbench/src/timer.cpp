@@ -1,14 +1,26 @@
-#include "libbench/timer.hpp"
+#include "timer.h"
+#include "BenchReport.h"
+
+#include <iostream>
 
 namespace libbench {
 
-Timer::Timer() { reset(); }
+Timer::~Timer()
+{
+	std::chrono::time_point<Clock> endTime { Clock::now() };
+	const auto microseconds = std::chrono::duration_cast<std::chrono::microseconds>(endTime - m_startTime).count();
 
-void Timer::reset() { start_ = std::chrono::high_resolution_clock::now(); }
-
-double Timer::elapsed() const {
-  auto now = std::chrono::high_resolution_clock::now();
-  std::chrono::duration<double> diff = now - start_;
-  return diff.count();
+	std::string reportString { m_name + " took " };
+	
+	if (microseconds < 1000)
+	{
+		reportString +=  (std::to_string(microseconds) + "µs to execute.");
+	}
+	else
+	{
+		reportString = (std::to_string(microseconds / 1000) + "ms to execute");
+	}
+	BenchReport::log(reportString);
 }
+
 } // namespace libbench

@@ -11,7 +11,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(libprng)
 add_subdirectory(libbench)
-add_subdirectory(benchmarks)
 add_subdirectory(test)
 add_subdirectory(libseed)
 
