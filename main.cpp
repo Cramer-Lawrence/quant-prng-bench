@@ -22,9 +22,9 @@ template <typename T> void printVector(std::vector<T> vec) {
 
 int main() {
 
-	BenchStatics::calculateDistribution(generateLCGRandoms_Implicit(100, 10), "LCG Implicit");
-	BenchStatics::calculateDistribution(generateLCGRandoms_Entropy(100, 10), "LCG Entroy");
-	BenchStatics::calculateDistribution(generateLCGRandoms_Hashed(100, 10), "LCG Hashed");
+	BenchStatics::calculateDistribution(generateLCGRandoms_Implicit(10000, 50), "LCG Implicit");
+	BenchStatics::calculateDistribution(generateLCGRandoms_Entropy(10000, 50), "LCG Entroy");
+	BenchStatics::calculateDistribution(generateLCGRandoms_Hashed(10000, 50), "LCG Hashed");
 
   BenchReport::endLog();
 
