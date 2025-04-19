@@ -5,11 +5,11 @@
 #include "BenchReport.h"
 
 
-std::vector<std::pair<uint64_t, int>> BenchStatics::calculateDistribution(std::vector<uint64_t> inVec) {
+std::vector<std::pair<uint64_t, int>> BenchStatics::calculateDistribution(std::vector<uint64_t> inVec, const std::string& reportTypeMsg) {
   
 	std::vector<std::pair<uint64_t, int>> outVec{};
 	
-	BenchReport::log("Generating Distribution Report...");
+	BenchReport::log("Generating " + reportTypeMsg + " Distribution Report...");
 
   for (const uint64_t &i : inVec) {
     int n { checkVectorForValue(outVec, i) };
