@@ -6,6 +6,7 @@
 namespace libprng {
 class LCG {
 public:
+	LCG() = default;
 	LCG(uint64_t seed);
 	uint64_t next();
 private:

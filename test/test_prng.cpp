@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>	// Google test macros
-#include "libprng/lcg.hpp"
+#include "lcg.hpp"
 
 TEST(PRNGTest, LCGProducesDifferentNumbers) {
 	libprng::LCG rng(42);
