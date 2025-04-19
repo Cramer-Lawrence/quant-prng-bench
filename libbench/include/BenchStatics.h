@@ -9,7 +9,9 @@
 class BenchStatics
 {
 public:
-	static std::vector<std::pair<uint64_t, int>> calculateDistribution(std::vector<uint64_t> inVec, const std::string& msg);
+	static std::vector<std::pair<uint64_t, int>> calculateDistribution(std::vector<uint64_t> inVec, const std::string& reportTypeMsg);
+
+	static void generateDistributionRatio(std::vector<std::pair<uint64_t, int>> distVec, const std::string& reportTypeMsg);
 
 private:
 	template<typename T>
