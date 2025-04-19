@@ -1,16 +1,17 @@
 #include <bits/stdc++.h>
 #include <iostream>
+#include <string>
 #include <vector>
 
 #include "BenchReport.h"
+#include "BenchStatics.h"
 #include "libprng/include/lcg.hpp"
 #include "libseed/include/SeedGenerator.h"
-#include "BenchStatics.h"
 #include "timer.h"
 
-std::vector<uint64_t> generateLCGRandoms_Implicit(const int& n, const int& max);
-std::vector<uint64_t> generateLCGRandoms_Entropy(const int& n, const int& max);
-std::vector<uint64_t> generateLCGRandoms_Hashed(const int& n, const int& max);
+std::vector<uint64_t> generateLCGRandoms_Implicit(const int &n, const int &max);
+std::vector<uint64_t> generateLCGRandoms_Entropy(const int &n, const int &max);
+std::vector<uint64_t> generateLCGRandoms_Hashed(const int &n, const int &max);
 
 template <typename T> void printVector(std::vector<T> vec) {
   for (T &t : vec) {
@@ -20,18 +21,21 @@ template <typename T> void printVector(std::vector<T> vec) {
   std::cout << std::endl;
 }
 
-int main() {
+int main(int argc, char *argv[]) {
 
-	BenchStatics::calculateDistribution(generateLCGRandoms_Implicit(10000, 50), "LCG Implicit");
-	BenchStatics::calculateDistribution(generateLCGRandoms_Entropy(10000, 50), "LCG Entroy");
-	BenchStatics::calculateDistribution(generateLCGRandoms_Hashed(10000, 50), "LCG Hashed");
+  const int n{std::stoi(argv[1])};
+  const int m{std::stoi(argv[2])};
+
+  BenchStatics::calculateDistribution(generateLCGRandoms_Implicit(n, m), "LCG Implicit");
+  BenchStatics::calculateDistribution(generateLCGRandoms_Entropy(n, m), "LCG Entroy");
+  BenchStatics::calculateDistribution(generateLCGRandoms_Hashed(n, m), "LCG Hashed");
 
   BenchReport::endLog();
 
   return 0;
 }
 
-std::vector<uint64_t> generateLCGRandoms_Implicit(const int& n, const int& max) {
+std::vector<uint64_t> generateLCGRandoms_Implicit(const int &n, const int &max) {
   libbench::Timer t{"LCG Implicit Seed"};
 
   std::vector<uint64_t> outVec{};
@@ -47,7 +51,7 @@ std::vector<uint64_t> generateLCGRandoms_Implicit(const int& n, const int& max) 
   return outVec;
 }
 
-std::vector<uint64_t> generateLCGRandoms_Entropy(const int &n, const int& max) {
+std::vector<uint64_t> generateLCGRandoms_Entropy(const int &n, const int &max) {
   libbench::Timer t{"LCG Entropy Seed"};
 
   std::vector<uint64_t> outVec{};
@@ -64,7 +68,7 @@ std::vector<uint64_t> generateLCGRandoms_Entropy(const int &n, const int& max) {
   return outVec;
 }
 
-std::vector<uint64_t> generateLCGRandoms_Hashed(const int &n, const int& max) {
+std::vector<uint64_t> generateLCGRandoms_Hashed(const int &n, const int &max) {
   libbench::Timer t{"LCG Hashed Seed"};
 
   std::vector<uint64_t> outVec{};
