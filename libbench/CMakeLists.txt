@@ -1,6 +1,7 @@
-add_library(libbench
+add_library(libbench 
 	src/timer.cpp
 	src/BenchReport.cpp
+	src/BenchStatics.cpp
 )
 
 target_include_directories(libbench PUBLIC

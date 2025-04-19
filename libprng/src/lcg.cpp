@@ -3,16 +3,16 @@
 #include <iostream>
 
 namespace libprng {
-LCG::LCG(uint64_t seed) : state_(seed) {}
 
-uint64_t LCG::next() {
+uint64_t LCG::next(const int &maxValue) {
 
-  const uint64_t m { 15 };
-  const uint64_t a { 8 };
-  const uint64_t c { 3 };
+  const uint64_t m{ static_cast<uint64_t>(2e64) };
+  const uint64_t a{ 500 };
+  const uint64_t c{ m_seed + 1 };
 
-  state_ = (state_ * a + c) % m;
-  
-  return state_;
+  m_seed = ((m_seed * a) + c) % m;
+
+  return (m_seed % (maxValue + 1)); // use the remainder to bracket in the max value for the random set
 }
+
 } // namespace libprng

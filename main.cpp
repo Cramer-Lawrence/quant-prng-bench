@@ -1,21 +1,20 @@
+#include <bits/stdc++.h>
 #include <iostream>
 #include <vector>
 
 #include "BenchReport.h"
 #include "libprng/include/lcg.hpp"
 #include "libseed/include/SeedGenerator.h"
+#include "BenchStatics.h"
 #include "timer.h"
 
-std::vector<uint64_t> generateLCGRandoms_Implicit(const int &n);
-std::vector<uint64_t> generateLCGRandoms_Entropy(const int &n);
-std::vector<uint64_t> generateLCGRandoms_Hashed(const int &n);
+std::vector<uint64_t> generateLCGRandoms_Implicit(const int& n, const int& max);
+std::vector<uint64_t> generateLCGRandoms_Entropy(const int& n);
+std::vector<uint64_t> generateLCGRandoms_Hashed(const int& n);
 
-template<typename T>
-void printVector(std::vector<T> vec)
-{
-  for (T& t : vec)
-  {
-	  std::cout << t << "\n";
+template <typename T> void printVector(std::vector<T> vec) {
+  for (T &t : vec) {
+    std::cout << t << "\n";
   }
 
   std::cout << std::endl;
@@ -23,28 +22,31 @@ void printVector(std::vector<T> vec)
 
 int main() {
 
-  auto lcgImplicit {generateLCGRandoms_Implicit(50)};
+  auto lcgImplicit{ generateLCGRandoms_Implicit(100, 25) };
+  BenchStatics::calculateDistribution(lcgImplicit);
+  //std::stable_sort(lcgImplicit.begin(), lcgImplicit.end());
   printVector(lcgImplicit);
 
-  //generateLCGRandoms_Entropy(100);
-  //generateLCGRandoms_Hashed(100);
+  // generateLCGRandoms_Entropy(100);
+  // generateLCGRandoms_Hashed(100);
 
   BenchReport::endLog();
 
   return 0;
 }
 
-std::vector<uint64_t> generateLCGRandoms_Implicit(const int &n) {
+std::vector<uint64_t> generateLCGRandoms_Implicit(const int& n, const int& max) {
   libbench::Timer t{"LCG Implicit Seed"};
 
-  std::vector<uint64_t> outVec {};
+  std::vector<uint64_t> outVec{};
 
   SeedGenerator sg{};
   libprng::LCG lcg{sg.generateImplicitSeed()};
-  BenchReport::log("Generating " + std::to_string(n) + " LCG PRNG numbers with Implicit Seed...");
+  BenchReport::log("Generating " + std::to_string(n) +
+                   " LCG PRNG numbers with Implicit Seed...");
 
   for (int i{}; i < n; ++i) {
-    outVec.push_back(lcg.next());
+    outVec.push_back(lcg.next(max));
   }
   return outVec;
 }
@@ -52,11 +54,12 @@ std::vector<uint64_t> generateLCGRandoms_Implicit(const int &n) {
 std::vector<uint64_t> generateLCGRandoms_Entropy(const int &n) {
   libbench::Timer t{"LCG Entropy Seed"};
 
-  std::vector<uint64_t> outVec {};
+  std::vector<uint64_t> outVec{};
 
   SeedGenerator sg{};
   libprng::LCG lcg{sg.generateEntropySeed()};
-  BenchReport::log("Generating " + std::to_string(n) + " LCG PRNG numbers with Entropy Seed...");
+  BenchReport::log("Generating " + std::to_string(n) +
+                   " LCG PRNG numbers with Entropy Seed...");
 
   for (int i{}; i < n; ++i) {
     outVec.push_back(lcg.next());
@@ -68,11 +71,12 @@ std::vector<uint64_t> generateLCGRandoms_Entropy(const int &n) {
 std::vector<uint64_t> generateLCGRandoms_Hashed(const int &n) {
   libbench::Timer t{"LCG Hashed Seed"};
 
-  std::vector<uint64_t> outVec {};
+  std::vector<uint64_t> outVec{};
 
   SeedGenerator sg{};
   libprng::LCG lcg{sg.generateHashedSeed()};
-  BenchReport::log("Generating " + std::to_string(n) + " LCG PRNG numbers with Hashed Seed...");
+  BenchReport::log("Generating " + std::to_string(n) +
+                   " LCG PRNG numbers with Hashed Seed...");
 
   for (int i{}; i < n; ++i) {
     outVec.push_back(lcg.next());
